@@ -96,7 +96,7 @@ function App() {
           <div className="page-heading">
             <div>
               <p className="eyebrow">INFRASTRUCTURE OVERVIEW</p>
-              <h1>{activeTab === "Overview" ? "Project dashboard" : activeTab}</h1>
+              <h1>{activeTab === "Overview" ? "Abhinav's Project" : activeTab}</h1>
               <p className="subtitle">
                 Your deployment workspace at a glance.
               </p>
