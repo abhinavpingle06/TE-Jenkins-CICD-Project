@@ -111,7 +111,7 @@ function App() {
               <div className="welcome-banner">
                 <div className="welcome-copy">
                   <span className="banner-label">YOUR DEVOPS WORKSPACE</span>
-                  <h2>Build. Ship. Monitor.Play</h2>
+                  <h2>Build. Ship. Monitor. Abhinav </h2>
                   <p>
                     A central place to track your application, deployment
                     workflow and infrastructure services.
