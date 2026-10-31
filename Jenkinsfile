@@ -35,7 +35,7 @@ pipeline {
                     docker logs --tail 30 devops_project
 
                     # Check application HTTP response
-                    curl -f http://localhost:3000/ || exit 1
+                    curl -f http://localhost:80/ || exit 1
                 '''
             }
         }
