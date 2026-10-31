@@ -1,7 +1,7 @@
 
 pipeline {
     agent {
-        label "agent23"
+        agent any
     }
 
     stages {
@@ -36,6 +36,15 @@ pipeline {
 
                     # Check application HTTP response
                     curl -f http://localhost:80/ || exit 1
+                '''
+            }
+        }
+
+        stage("Push Image"){
+            steps{
+                sh '''
+                docker tag devops_project:latest 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
+                docker push 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
                 '''
             }
         }
