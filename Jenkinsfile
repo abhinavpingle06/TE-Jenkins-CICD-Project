@@ -41,7 +41,7 @@ pipeline {
         stage("Push Image"){
             steps{
                 sh '''
-                docker tag devops_project:latest 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
+                docker tag devops_project 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
                 docker push 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
                 '''
             }
