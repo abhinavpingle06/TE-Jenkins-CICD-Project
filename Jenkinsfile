@@ -29,10 +29,11 @@ pipeline{
             }
         }
         stage("Deploy"){
-            echo "In the deployment process"
+            steps{
+                echo "In the deployment process"
             sh '''
-            docker stop project:latest || true
-            docker rm project:latest || true 
+            docker stop devops_project || true
+            docker rm devops_project || true 
 
             docker run -d \
             --name devops_project \
@@ -40,6 +41,7 @@ pipeline{
             -p 80:80 \
             project:latest 
             '''
+            }
         }
         stage("Testing deployment"){
             steps{
@@ -49,7 +51,8 @@ pipeline{
                 '''
             }
         }
-        post{
+    }
+    post{
             success {
                 echo "The pproject is deployed"
             }
@@ -57,5 +60,4 @@ pipeline{
                 echo "Deployment failed!"
             }
         }
-    }
 }
