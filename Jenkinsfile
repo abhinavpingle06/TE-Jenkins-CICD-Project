@@ -12,7 +12,7 @@ pipeline{
         }
         stage("build"){
             steps{
-                pwd
+                sh "pwd"
                 echo "building the image"
                 sh '''
                 docker build -t project:v1 .
