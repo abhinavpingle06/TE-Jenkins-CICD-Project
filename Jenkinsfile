@@ -17,7 +17,7 @@ pipeline {
 
                 sh '''
                     pwd
-                    docker compose up -d --build
+                    docker compose up -d --tag --build
                     docker compose ps
                 '''
             }

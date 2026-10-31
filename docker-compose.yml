@@ -1,9 +1,11 @@
 services:
   project:
-    image: 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest
+    image: devops_project:latest
     build:
       context: .
       dockerfile: Dockerfile
+      tags:
+        - devops_project:latest
     container_name: devops_project
     restart: unless-stopped
     ports:
