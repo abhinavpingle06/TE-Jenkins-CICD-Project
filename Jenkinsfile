@@ -1,63 +1,53 @@
-pipeline{
-    agent{
+
+pipeline {
+    agent {
         label "agent23"
     }
 
-    stages{
-        stage("checkout"){
-            steps{
+    stages {
+
+        stage("Checkout") {
+            steps {
                 echo "Checking out the code"
                 checkout scm
             }
         }
-        stage("build"){
-            steps{
-                sh "pwd"
-                echo "building the image"
-                sh '''
-                docker build -t project:v1 .
-                docker tag project:v1 project:latest
-                '''
-            }
-        }
-        stage("Testing build"){
-            steps{
-                sh '''
-                docker ps -a
-                docker inspect project:latest
-                '''
-            }
-        }
-        stage("Deploy"){
-            steps{
-                echo "In the deployment process"
-            sh '''
-            docker stop devops_project || true
-            docker rm devops_project || true 
 
-            docker run -d \
-            --name devops_project \
-            --restart unless-stopped \
-            -p 80:80 \
-            project:latest 
-            '''
+        stage("Build and Deploy") {
+            steps {
+                echo "Building Docker image and deploying application"
+
+                sh '''
+                    pwd
+                    docker compose up -d --build
+                    docker compose ps
+                '''
             }
         }
-        stage("Testing deployment"){
-            steps{
+
+        stage("Testing Deployment") {
+            steps {
+                echo "Checking deployment status"
+
                 sh '''
-                docker ps 
-                docker logs --tail 30 devops_project
+                    docker compose ps
+
+                    docker logs --tail 30 devops_project
+
+                    # Check application HTTP response
+                    curl -f http://localhost:3000/ || exit 1
                 '''
             }
         }
     }
-    post{
-            success {
-                echo "The pproject is deployed"
-            }
-            failure{
-                echo "Deployment failed!"
-            }
+
+    post {
+        success {
+            echo "The project is successfully deployed!"
         }
+
+        failure {
+            echo "Deployment failed! Check Jenkins console output."
+        }
+    }
 }
