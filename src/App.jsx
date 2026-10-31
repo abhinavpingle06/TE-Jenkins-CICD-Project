@@ -96,7 +96,7 @@ function App() {
           <div className="page-heading">
             <div>
               <p className="eyebrow">INFRASTRUCTURE OVERVIEW</p>
-              <h1>{activeTab === "Overview" ? "Abhinav's Project" : activeTab}</h1>
+              <h1>{activeTab === "Overview" ? "Abhinav's TE-IT-B Project" : activeTab}</h1>
               <p className="subtitle">
                 Your deployment workspace at a glance.
               </p>
@@ -111,7 +111,7 @@ function App() {
               <div className="welcome-banner">
                 <div className="welcome-copy">
                   <span className="banner-label">YOUR DEVOPS WORKSPACE</span>
-                  <h2>Build. Ship. Monitor.</h2>
+                  <h2>Build. Ship. Monitor. Abhinav </h2>
                   <p>
                     A central place to track your application, deployment
                     workflow and infrastructure services.
