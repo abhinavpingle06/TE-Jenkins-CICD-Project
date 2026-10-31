@@ -1,5 +1,6 @@
 services:
   project:
+    image: 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest
     build:
       context: .
       dockerfile: Dockerfile
