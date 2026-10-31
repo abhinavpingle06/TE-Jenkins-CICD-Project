@@ -38,10 +38,22 @@ pipeline {
             }
         }
 
+        stage('Authenticate with ECR') {
+            steps {
+                echo 'Authenticating Docker with Amazon ECR'
+
+                sh '''
+                    set -eu
+
+                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 427304877638.dkr.ecr.ap-south-1.amazonaws.com
+                '''
+            }
+        }
+
         stage("Push Image"){
             steps{
                 sh '''
-                docker tag devops_project 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
+                docker tag devops_project:latest 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
                 docker push 427304877638.dkr.ecr.ap-south-1.amazonaws.com/devops-project:latest 
                 '''
             }
